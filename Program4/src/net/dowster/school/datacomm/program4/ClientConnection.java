@@ -50,7 +50,7 @@ public class ClientConnection
     public void connect() throws IOException {
         this.socket = new Socket(address, port);
         this.inputScanner = new Scanner(socket.getInputStream());
-        this.printer = new PrintWriter(socket.getOutputStream());
+        this.printer = new PrintWriter(socket.getOutputStream(), true);
     }
 
     public PrintWriter getPrinter() {

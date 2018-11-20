@@ -34,16 +34,20 @@ public class ListFiles extends Command
       Vector<File> fileList = new Vector<File>();
 
       socketWriter.println(LIST);
-
-      if(inputScanner.hasNext() && inputScanner.next().equals(BEGIN))
-
-      while(inputScanner.hasNext()) {
-         String name = inputScanner.next();
-         if(name.equals(END))
-            break;
-         else
-            fileList.add(new File(name));
+      logWriter.println("Querying server for file list...");
+      if(inputScanner.hasNextLine() && inputScanner.nextLine().contains(BEGIN))
+      {
+         while (inputScanner.hasNextLine())
+         {
+            String name = inputScanner.nextLine();
+            if (name.contains(END))
+               break;
+            else
+               fileList.add(new File(name));
+         }
       }
+
+      logWriter.println("Got " + fileList.size() + " files.");
 
       return fileList;
    }

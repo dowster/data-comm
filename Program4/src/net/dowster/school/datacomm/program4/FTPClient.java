@@ -2,10 +2,10 @@ package net.dowster.school.datacomm.program4;
 
 import net.dowster.school.datacomm.program4.commands.ListFiles;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -15,12 +15,23 @@ public class FTPClient extends javax.swing.JFrame {
 
     ArrayList<File> serverFiles = new ArrayList<File>();
     ArrayList<File> clientFiles = new ArrayList<File>();
+
+   private Timer logFlushTimer = new Timer();
+    StringWriter stringWriter = new StringWriter();
+    PrintWriter logWriter = new PrintWriter(stringWriter);
+
     private ClientConnection clientConnection;
     /**
      * Creates new form FTPClient
      */
     public FTPClient() {
         initComponents();
+
+       logFlushTimer.cancel();
+       logFlushTimer.purge();
+       logFlushTimer = new Timer();
+
+       startLogFlushTimer();
         setSize(500,550);
         this.getButton.setEnabled(false);
         this.putButton.setEnabled(false);
@@ -241,12 +252,18 @@ public class FTPClient extends javax.swing.JFrame {
 
     private void putButtonActionPerformed(java.awt.event.ActionEvent evt)
     {
-        ListFiles fileList = new ListFiles(clientConnection.getInputScanner(),clientConnection.getPrinter(), null);
-        serverFiles = new ArrayList<File>(fileList.query());
-        serverFilesListView.updateUI();
+       updateServerList();
     }
 
-    private void getButtonActionPerformed(java.awt.event.ActionEvent evt)
+   private void updateServerList()
+   {
+      ListFiles fileList = new ListFiles(clientConnection, logWriter);
+
+      serverFiles = new ArrayList<File>(fileList.query());
+      serverFilesListView.updateUI();
+   }
+
+   private void getButtonActionPerformed(java.awt.event.ActionEvent evt)
     {
         //TODO:Get files
 
@@ -272,6 +289,7 @@ public class FTPClient extends javax.swing.JFrame {
         try
         {
             this.clientConnection.disconnect();
+            this.clientConnection = null;
         } catch(IOException e) {
             this.clientConnection = null;
         }
@@ -288,6 +306,7 @@ public class FTPClient extends javax.swing.JFrame {
                             Integer.decode(this.serverPort.getText()));
             serverLog.append("Connected to server" + System.getProperty("line.separator"));
             updateConnectionStatus();
+            updateServerList();
         }
         catch (IOException ex)
         {
@@ -314,4 +333,17 @@ public class FTPClient extends javax.swing.JFrame {
     private javax.swing.JLabel serverFilesLabel;
     private javax.swing.JList<String> serverFilesListView;
     // End of variables declaration//GEN-END:variables
+
+   private void startLogFlushTimer() {
+      logFlushTimer.schedule(new LogFlusher(), 100, 100);
+   }
+
+   private class LogFlusher extends TimerTask
+   {
+      @Override
+      public void run() {
+         serverLog.append(stringWriter.toString());
+         stringWriter.flush();
+      }
+   }
 }
