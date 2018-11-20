@@ -1,5 +1,6 @@
 package net.dowster.school.datacomm.program4;
 
+import net.dowster.school.datacomm.program4.commands.GetFile;
 import net.dowster.school.datacomm.program4.commands.ListFiles;
 
 import java.io.*;
@@ -12,7 +13,6 @@ import java.util.TimerTask;
  * @author mattsteiner
  */
 public class FTPClient extends javax.swing.JFrame {
-
     ArrayList<File> serverFiles = new ArrayList<File>();
     ArrayList<File> clientFiles = new ArrayList<File>();
 
@@ -258,14 +258,18 @@ public class FTPClient extends javax.swing.JFrame {
    private void updateServerList()
    {
       ListFiles fileList = new ListFiles(clientConnection, logWriter);
-
       serverFiles = new ArrayList<File>(fileList.query());
       serverFilesListView.updateUI();
    }
 
    private void getButtonActionPerformed(java.awt.event.ActionEvent evt)
     {
-        //TODO:Get files
+        GetFile gotFile = new GetFile(clientConnection.getInputScanner(), clientConnection.getPrinter(),logWriter);
+        try {
+            gotFile.request();
+        } catch (IOException e) {
+            e.printStackTrace(logWriter);
+        }
 
     }
 
