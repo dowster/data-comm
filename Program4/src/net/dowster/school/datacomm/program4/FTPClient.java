@@ -21,6 +21,9 @@ public class FTPClient extends javax.swing.JFrame {
      */
     public FTPClient() {
         initComponents();
+        setSize(500,550);
+        this.getButton.setEnabled(false);
+        this.putButton.setEnabled(false);
     }
 
     public static File getFileDir()
@@ -61,7 +64,7 @@ public class FTPClient extends javax.swing.JFrame {
 
         portLabel.setText("Port");
 
-        disconnectButton.setText("Disconnect");
+        disconnectButton.setText("Connect");
         disconnectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 disconnectButtonActionPerformed(evt);
@@ -93,7 +96,7 @@ public class FTPClient extends javax.swing.JFrame {
 
         serverFilesLabel.setText("Server Files");
 
-        clientFilesLabel.setText("ClientFiles");
+        clientFilesLabel.setText("Client Files");
 
         putButton.setText("Put");
         putButton.setToolTipText("");
@@ -141,7 +144,8 @@ public class FTPClient extends javax.swing.JFrame {
                                                 .addComponent(serverFilesLabel)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(clientFilesLabel)
-                                                .addGap(103, 103, 103))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(100, 100, 100))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel1)
                                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -238,7 +242,6 @@ public class FTPClient extends javax.swing.JFrame {
     private void putButtonActionPerformed(java.awt.event.ActionEvent evt)
     {
         ListFiles fileList = new ListFiles(clientConnection.getInputScanner(),clientConnection.getPrinter(), null);
-
         serverFiles = new ArrayList<File>(fileList.query());
         serverFilesListView.updateUI();
     }
@@ -254,10 +257,14 @@ public class FTPClient extends javax.swing.JFrame {
         if(this.clientConnection != null && this.clientConnection.isConnected())
         {
             this.disconnectButton.setText("Disconnect");
+            this.getButton.setEnabled(true);
+            this.putButton.setEnabled(true);
         }
         else
         {
             this.disconnectButton.setText("Connect");
+            this.getButton.setEnabled(false);
+            this.putButton.setEnabled(false);
         }
     }
 
