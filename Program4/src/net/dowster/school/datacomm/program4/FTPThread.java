@@ -7,8 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.net.Socket;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Implementation of Thread which handles a server thread for the cipher
@@ -57,8 +56,9 @@ public class FTPThread extends Thread
 
       while (inputScanner.hasNext())
       {
-         Command command = CommandProcessor.createCommand(inputScanner, socketWriter);
-         command.execute();
+         Command command = CommandProcessor.createCommand(inputScanner, socketWriter, logWriter);
+         if(command != null)
+            command.execute();
       }
 
       logWriter.println("[" + (new Date()).toString() + "] " +

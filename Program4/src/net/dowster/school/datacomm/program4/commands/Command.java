@@ -7,10 +7,12 @@ public abstract class Command extends Thread
 {
    protected Scanner inputScanner;
    protected PrintWriter socketWriter;
+   protected PrintWriter logWriter;
 
-   public Command (Scanner inputScanner, PrintWriter socketWriter) {
+   public Command (Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter) {
       this.inputScanner = inputScanner;
       this.socketWriter = socketWriter;
+      this.logWriter = logWriter;
    }
 
    public void execute() {

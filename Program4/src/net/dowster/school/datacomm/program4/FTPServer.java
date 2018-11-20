@@ -14,7 +14,7 @@ import java.net.Socket;
  */
 public class FTPServer {
 
-   private static final int SERVER_PORT = 5764;
+   private static final int SERVER_PORT = 5721;
    public static final String LOG_PATH = "program4\\";
    public static final String LOG_FILE = "log.txt";
 

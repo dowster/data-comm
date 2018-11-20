@@ -6,13 +6,13 @@ import java.util.Scanner;
 
 public class CommandProcessor
 {
-   public static Command createCommand(Scanner inputScanner, PrintWriter socketWriter)
+   public static Command createCommand(Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter)
    {
       switch (inputScanner.next())
       {
-         case "LIST": return new ListFiles(inputScanner, socketWriter);
-         case "GET": return new GetFile(inputScanner, socketWriter);
-         case "PUT": return new PutFile(inputScanner, socketWriter);
+         case "LIST": return new ListFiles(inputScanner, socketWriter, logWriter);
+         case "GET": return new GetFile(inputScanner, socketWriter, logWriter);
+         case "PUT": return new PutFile(inputScanner, socketWriter, logWriter);
       }
       return null;
    }

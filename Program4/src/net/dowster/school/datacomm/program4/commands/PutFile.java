@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class PutFile extends Command
 {
 
-   public PutFile(Scanner inputScanner, PrintWriter socketWriter)
+   public PutFile(Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter)
    {
-      super(inputScanner, socketWriter);
+      super(inputScanner, socketWriter, logWriter);
    }
 }
