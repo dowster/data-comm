@@ -1,7 +1,8 @@
 package net.dowster.school.datacomm.program4;
 
-public class FTPClient
-{
+import javax.swing.*;
 
-
+public class FTPClient {
+    private JTextField hostLabel;
+    private JPanel panel1;
 }
