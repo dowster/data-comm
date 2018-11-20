@@ -54,6 +54,15 @@ public class FTPServer {
 
    }
 
+   public static File GetFileDir()
+   {
+      File dir = new File(".\\Files\\");
+      if(!dir.exists())
+         dir.mkdirs();
+
+      return dir;
+   }
+
    /**
     * Run the socket server handling code. Each connection will get its own
     * serverThread to run on.

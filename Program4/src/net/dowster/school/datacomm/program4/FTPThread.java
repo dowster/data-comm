@@ -54,6 +54,14 @@ public class FTPThread extends Thread
       logWriter.println("[" + (new Date()).toString() + "] Connection from " +
             socket.getInetAddress() + " on Port: " + socket.getPort());
 
+      try
+      {
+         logWriter.println(new java.io.File( "." ).getCanonicalPath());
+      } catch (IOException e)
+      {
+         e.printStackTrace();
+      }
+
       while (inputScanner.hasNext())
       {
          Command command = CommandProcessor.createCommand(inputScanner, socketWriter, logWriter);

@@ -1,7 +1,6 @@
 package net.dowster.school.datacomm.program4.commands;
 
 import java.io.PrintWriter;
-import java.net.Socket;
 import java.util.Scanner;
 
 public class CommandProcessor
@@ -10,9 +9,9 @@ public class CommandProcessor
    {
       switch (inputScanner.next())
       {
-         case "LIST": return new ListFiles(inputScanner, socketWriter, logWriter);
-         case "GET": return new GetFile(inputScanner, socketWriter, logWriter);
-         case "PUT": return new PutFile(inputScanner, socketWriter, logWriter);
+         case "LIST:": return new ListFiles(inputScanner, socketWriter, logWriter);
+         case "GET:": return new GetFile(inputScanner, socketWriter, logWriter);
+         case "PUT:": return new PutFile(inputScanner, socketWriter, logWriter);
       }
       return null;
    }

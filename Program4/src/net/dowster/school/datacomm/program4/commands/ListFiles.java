@@ -1,5 +1,7 @@
 package net.dowster.school.datacomm.program4.commands;
 
+import net.dowster.school.datacomm.program4.FTPServer;
+
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.Scanner;
@@ -15,6 +17,11 @@ public class ListFiles extends Command
    public ListFiles(Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter)
    {
       super(inputScanner, socketWriter, logWriter);
+   }
+
+   @Override
+   public void execute() {
+      this.respond();
    }
 
    public Vector<File> query() {
@@ -36,7 +43,7 @@ public class ListFiles extends Command
    }
 
    public void respond() {
-      File dir = new File("Files");
+      File dir = FTPServer.GetFileDir();
 
       socketWriter.println(BEGIN);
 
