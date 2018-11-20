@@ -343,7 +343,8 @@ public class FTPClient extends javax.swing.JFrame {
       @Override
       public void run() {
          serverLog.append(stringWriter.toString());
-         stringWriter.flush();
+         stringWriter.getBuffer().setLength(0);
+
       }
    }
 }

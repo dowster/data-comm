@@ -48,18 +48,22 @@ public class GetFile extends Command
 
    public void request() throws IOException
    {
+      // Tell the server that we want to "GET: fileName"
       socketWriter.print("GET: ");
       socketWriter.println(fileName);
 
+      // Somewhere to store the port that's returned
       int port;
-
       if(inputScanner.next().equals("PORT:")) {
          port = inputScanner.nextInt();
       } else
-         return;
+         return; // Just stop if we don't get a port back, something's wrong
 
+      // Create the new transfer socket for this file.
       Socket transferSocket = new Socket(socket.getInetAddress(), port);
       File transferFile = new File(FTPClient.getFileDir() + "\\" + fileName);
+
+      // Setup the receiver thread to write to the file outside the main GUI
       FileReceiverThread fileReceiverThread = new FileReceiverThread(transferSocket, transferFile, logWriter);
       fileReceiverThread.start();
    }
