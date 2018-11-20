@@ -1,7 +1,9 @@
 package net.dowster.school.datacomm.program4;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Timer;
 
 /**
  *
@@ -11,7 +13,7 @@ public class FTPClient extends javax.swing.JFrame {
 
     ArrayList<File> serverFiles = new ArrayList<File>();
     ArrayList<File> clientFiles = new ArrayList<File>();
-
+    private ClientConnection clientConnection;
     /**
      * Creates new form FTPClient
      */
@@ -29,9 +31,9 @@ public class FTPClient extends javax.swing.JFrame {
     private void initComponents() {
 
         hostLabel = new javax.swing.JLabel();
-        hostAddressField = new javax.swing.JTextField();
+        serverAddressField = new javax.swing.JTextField();
         portLabel = new javax.swing.JLabel();
-        portField = new javax.swing.JTextField();
+        serverPort = new javax.swing.JTextField();
         disconnectButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         clientFilesListView = new javax.swing.JList<>();
@@ -43,7 +45,7 @@ public class FTPClient extends javax.swing.JFrame {
         getButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        serverLog = new javax.swing.JTextArea();
 
         hostLabel.setText("Host");
 
@@ -101,9 +103,9 @@ public class FTPClient extends javax.swing.JFrame {
 
         jLabel1.setText("Output Messages");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        serverLog.setColumns(20);
+        serverLog.setRows(5);
+        jScrollPane3.setViewportView(serverLog);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,11 +119,11 @@ public class FTPClient extends javax.swing.JFrame {
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addComponent(hostLabel)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(hostAddressField))
+                                                                .addComponent(serverAddressField))
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addComponent(portLabel)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(portField, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(serverPort, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(disconnectButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -152,11 +154,11 @@ public class FTPClient extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(hostLabel)
-                                        .addComponent(hostAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(serverAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(portLabel)
-                                        .addComponent(portField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(serverPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(disconnectButton))
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -217,7 +219,10 @@ public class FTPClient extends javax.swing.JFrame {
 
     private void disconnectButtonActionPerformed(java.awt.event.ActionEvent evt)
     {
-        //TODO:Disconnect from server
+        if(this.clientConnection != null && this.clientConnection.isConnected())
+            disconnect();
+        else
+            connect();
     }
 
     private void putButtonActionPerformed(java.awt.event.ActionEvent evt)
@@ -230,6 +235,44 @@ public class FTPClient extends javax.swing.JFrame {
         //TODO:Get files
     }
 
+    private void updateConnectionStatus()
+    {
+        if(this.clientConnection != null && this.clientConnection.isConnected())
+        {
+            this.disconnectButton.setText("Disconnect");
+        }
+        else
+        {
+            this.disconnectButton.setText("Connect");
+        }
+    }
+
+    private void disconnect() {
+        try
+        {
+            this.clientConnection.disconnect();
+        } catch(IOException e) {
+            this.clientConnection = null;
+        }
+        updateConnectionStatus();
+    }
+
+    private void connect()
+    {
+        try
+        {
+            this.clientConnection =
+                    new ClientConnection(
+                            this.serverAddressField.getText(),
+                            Integer.decode(this.serverPort.getText()));
+            serverLog.append("Connected to server" + System.getProperty("line.separator"));
+            updateConnectionStatus();
+        }
+        catch (IOException ex)
+        {
+            serverLog.append("Failed to connect server" + System.getProperty("line.separator"));
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -237,14 +280,14 @@ public class FTPClient extends javax.swing.JFrame {
     private javax.swing.JList<String> clientFilesListView;
     private javax.swing.JButton disconnectButton;
     private javax.swing.JButton getButton;
-    private javax.swing.JTextField hostAddressField;
+    private javax.swing.JTextField serverAddressField;
     private javax.swing.JLabel hostLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField portField;
+    private javax.swing.JTextArea serverLog;
+    private javax.swing.JTextField serverPort;
     private javax.swing.JLabel portLabel;
     private javax.swing.JButton putButton;
     private javax.swing.JLabel serverFilesLabel;
