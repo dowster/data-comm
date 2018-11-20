@@ -28,6 +28,13 @@ public class GetFile extends Command
       fileName = inputScanner.next();
    }
 
+   /**
+    * Creates a get file object for the client.
+    *
+    * @param clientConnection current connection
+    * @param logWriter logWriter from ftp client
+    * @param fileName name of the file selected in the GUI
+    */
    public GetFile(ClientConnection clientConnection, PrintWriter logWriter, String fileName)
    {
       super(clientConnection, logWriter);
