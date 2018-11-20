@@ -18,7 +18,7 @@ public class GetFile extends Command
    private static Semaphore    portSetSem = new Semaphore(1);
 
    private static int MIN_PORT = 5750;
-   private static int MAX_PORT = 5799;
+   private static int MAX_PORT = 5774;
 
    private String fileName;
 
