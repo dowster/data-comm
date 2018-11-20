@@ -57,9 +57,8 @@ public class FTPThread extends Thread
 
       while (inputScanner.hasNext())
       {
-         Command command = CommandProcessor.createCommand(inputScanner.next(), socket);
-         command.start();
-
+         Command command = CommandProcessor.createCommand(inputScanner, socketWriter);
+         command.execute();
       }
 
       logWriter.println("[" + (new Date()).toString() + "] " +
