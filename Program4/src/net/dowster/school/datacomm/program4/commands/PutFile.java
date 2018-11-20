@@ -27,7 +27,7 @@ public class PutFile extends Command
    public PutFile(Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter)
    {
       super(inputScanner, socketWriter, logWriter);
-      fileName = inputScanner.next();
+      fileName = inputScanner.nextLine().trim();
    }
 
    /**

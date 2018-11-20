@@ -25,7 +25,7 @@ public class GetFile extends Command
    public GetFile(Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter)
    {
       super(inputScanner, socketWriter, logWriter);
-      fileName = inputScanner.next();
+      fileName = inputScanner.nextLine().trim();
    }
 
    /**
@@ -61,10 +61,13 @@ public class GetFile extends Command
 
       // Somewhere to store the port that's returned
       int port;
-      if(inputScanner.next().equals("PORT:")) {
+      if(inputScanner.hasNext("PORT:")) {
+         inputScanner.next();
          port = inputScanner.nextInt();
-      } else
-         return; // Just stop if we don't get a port back, something's wrong
+      } else {
+      logWriter.print(inputScanner.nextLine());
+      return; // Just stop if we don't get a port back, something's wrong
+   }
 
       // Create the new transfer socket for this file.
       Socket transferSocket = new Socket(socket.getInetAddress(), port);

@@ -34,7 +34,7 @@ public class ListFiles extends Command
       Vector<File> fileList = new Vector<File>();
 
       socketWriter.println(LIST);
-      logWriter.println("Querying server for file list...");
+
       if(inputScanner.hasNextLine() && inputScanner.nextLine().contains(BEGIN))
       {
          while (inputScanner.hasNextLine())
@@ -47,8 +47,6 @@ public class ListFiles extends Command
          }
       }
 
-      logWriter.println("Got " + fileList.size() + " files.");
-
       return fileList;
    }
 
@@ -57,12 +55,16 @@ public class ListFiles extends Command
 
       socketWriter.println(BEGIN);
 
+      logWriter.println("Listing files.");
+
       for (File file: dir.listFiles())
       {
          if(file.isFile()) {
             socketWriter.println(file.getName());
          }
       }
+
+      logWriter.println("Listed files.");
 
       socketWriter.println(END);
       socketWriter.flush();

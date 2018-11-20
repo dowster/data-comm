@@ -2,6 +2,7 @@ package net.dowster.school.datacomm.program4;
 
 import net.dowster.school.datacomm.program4.commands.GetFile;
 import net.dowster.school.datacomm.program4.commands.ListFiles;
+import net.dowster.school.datacomm.program4.commands.PutFile;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -84,10 +85,10 @@ public class FTPClient extends javax.swing.JFrame {
 
         clientFilesListView.setModel(new javax.swing.AbstractListModel<String>() {
             public int getSize() {
-                return serverFiles.size();
+                return clientFiles.size();
             }
             public String getElementAt(int i) {
-                return serverFiles.get(i).getName();
+                return clientFiles.get(i).getName();
             }
         });
 
@@ -252,28 +253,71 @@ public class FTPClient extends javax.swing.JFrame {
 
     private void putButtonActionPerformed(java.awt.event.ActionEvent evt)
     {
-       updateServerList();
+       String fileName = clientFilesListView.getSelectedValue();
+       sendFile(fileName);
+       updateFileLists();
     }
 
-   private void updateServerList()
+   private void sendFile(String fileName)
+   {
+      PutFile putFile = new PutFile(clientConnection, logWriter, fileName);
+      try
+      {
+         putFile.send();
+      } catch (IOException e)
+      {
+         e.printStackTrace(logWriter);
+      }
+      delayedListupdate();
+   }
+
+   private void updateFileLists()
+   {
+      listRemoteFiles();
+
+      listLocalFiles();
+   }
+
+   private void listLocalFiles()
+   {
+      clientFiles.clear();
+      for (File file: getFileDir().listFiles())
+      {
+         if(file.isFile()) {
+            clientFiles.add(file);
+         }
+      }
+      clientFilesListView.updateUI();
+   }
+
+   private void listRemoteFiles()
    {
       ListFiles fileList = new ListFiles(clientConnection, logWriter);
-      serverFiles = new ArrayList<File>(fileList.query());
+      serverFiles.clear();
+      serverFilesListView.updateUI();
+      for(File file : fileList.query())
+         serverFiles.add(file);
       serverFilesListView.updateUI();
    }
 
    private void getButtonActionPerformed(java.awt.event.ActionEvent evt)
     {
-        GetFile gotFile = new GetFile(clientConnection.getInputScanner(), clientConnection.getPrinter(),logWriter);
-        try {
-            gotFile.request();
-        } catch (IOException e) {
-            e.printStackTrace(logWriter);
-        }
-
+       String fileName = serverFilesListView.getSelectedValue();
+       getFile(fileName);
     }
 
-    private void updateConnectionStatus()
+   private void getFile(String fileName)
+   {
+      GetFile gotFile = new GetFile(clientConnection,logWriter,fileName);
+      try {
+          gotFile.request();
+      } catch (IOException e) {
+          e.printStackTrace(logWriter);
+      }
+      delayedListupdate();
+   }
+
+   private void updateConnectionStatus()
     {
         if(this.clientConnection != null && this.clientConnection.isConnected())
         {
@@ -310,7 +354,7 @@ public class FTPClient extends javax.swing.JFrame {
                             Integer.decode(this.serverPort.getText()));
             serverLog.append("Connected to server" + System.getProperty("line.separator"));
             updateConnectionStatus();
-            updateServerList();
+            updateFileLists();
         }
         catch (IOException ex)
         {
@@ -340,6 +384,18 @@ public class FTPClient extends javax.swing.JFrame {
 
    private void startLogFlushTimer() {
       logFlushTimer.schedule(new LogFlusher(), 100, 100);
+   }
+
+   private void delayedListupdate() {
+      logFlushTimer.schedule(new TimerTask()
+      {
+         @Override
+         public void run()
+         {
+            if(clientConnection != null && clientConnection.isConnected())
+               updateFileLists();
+         }
+      }, 1000);
    }
 
    private class LogFlusher extends TimerTask
