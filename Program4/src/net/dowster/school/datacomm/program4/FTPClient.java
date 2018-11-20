@@ -1,6 +1,7 @@
 package net.dowster.school.datacomm.program4;
 
-public class FTPServer
+public class FTPClient
 {
+
 
 }
