@@ -1,6 +1,5 @@
 package net.dowster.school.datacomm.program4.commands;
 
-abstract class Command
+public abstract class Command extends Thread
 {
-
 }
