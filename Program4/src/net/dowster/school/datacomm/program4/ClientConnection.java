@@ -60,4 +60,9 @@ public class ClientConnection
     public Scanner getInputScanner() {
         return inputScanner;
     }
+
+    public Socket getSocket()
+    {
+        return this.socket;
+    }
 }

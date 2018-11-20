@@ -23,6 +23,14 @@ public class FTPClient extends javax.swing.JFrame {
         initComponents();
     }
 
+    public static File getFileDir()
+    {
+        File dir = new File(".\\ClientFiles\\");
+        if(!dir.exists())
+            dir.mkdirs();
+        return dir;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

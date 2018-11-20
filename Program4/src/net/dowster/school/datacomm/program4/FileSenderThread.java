@@ -38,10 +38,14 @@ public class FileSenderThread extends Thread
          byte [] buffer = new byte[1024];
          int readBytes;
          while((readBytes = fis.read(buffer)) > -1) {
-            sos.write(buffer, 0, readBytes);   // Don't allow any extra bytes to creep in, final write
+            sos.write(buffer, 0, readBytes);
+            sos.flush();
          }
 
          fis.close();
+         sos.close();
+         socket.shutdownInput();
+         socket.shutdownOutput();
          socket.close();
 
       } catch (IOException e)

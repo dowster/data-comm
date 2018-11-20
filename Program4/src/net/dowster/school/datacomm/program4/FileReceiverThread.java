@@ -38,9 +38,11 @@ public class FileReceiverThread extends Thread
          byte [] buffer = new byte[1024];
          int readBytes;
          while((readBytes = sis.read(buffer)) > -1) {
-            fos.write(buffer, 0, readBytes);   // Don't allow any extra bytes to creep in, final write
+            fos.write(buffer, 0, readBytes);
+            fos.flush();
          }
 
+         fos.close();
          socket.close();
 
       } catch (IOException e)

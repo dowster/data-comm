@@ -1,7 +1,6 @@
 package net.dowster.school.datacomm.program4.commands;
 
-import net.dowster.school.datacomm.program4.FileReceiverThread;
-import net.dowster.school.datacomm.program4.FileSenderThread;
+import net.dowster.school.datacomm.program4.*;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -10,26 +9,28 @@ import java.net.Socket;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.concurrent.Semaphore;
 
 public class GetFile extends Command
 {
 
-   public static Set<Integer> portsInUse = new HashSet<Integer>();
+   private static Set<Integer> portsInUse = new HashSet<Integer>();
+   private static Semaphore    portSetSem = new Semaphore(1);
+
    private static int MIN_PORT = 5750;
    private static int MAX_PORT = 5799;
 
    private String fileName;
-   private PrintWriter logWriter;
 
    public GetFile(Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter)
    {
       super(inputScanner, socketWriter, logWriter);
-      fileName = inputScanner.nextLine();
+      fileName = inputScanner.next();
    }
 
-   public GetFile(Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter, String fileName)
+   public GetFile(ClientConnection clientConnection, PrintWriter logWriter, String fileName)
    {
-      super(inputScanner, socketWriter, logWriter);
+      super(clientConnection, logWriter);
       this.fileName = fileName;
    }
 
@@ -38,9 +39,10 @@ public class GetFile extends Command
       try
       {
          this.send();
-      } catch (IOException e)
+      } catch (IOException | InterruptedException e)
       {
          e.printStackTrace(logWriter);
+         socketWriter.println("ERROR");
       }
    }
 
@@ -49,40 +51,44 @@ public class GetFile extends Command
       socketWriter.print("GET: ");
       socketWriter.println(fileName);
 
-      String address;
       int port;
 
       if(inputScanner.next().equals("PORT:")) {
-         address = inputScanner.next("[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+");
          port = inputScanner.nextInt();
       } else
          return;
 
-      Socket transferSocket = new Socket(address, port);
-      File transferFile = new File("ClientFiles\\" + fileName);
+      Socket transferSocket = new Socket(socket.getInetAddress(), port);
+      File transferFile = new File(FTPClient.getFileDir() + "\\" + fileName);
       FileReceiverThread fileReceiverThread = new FileReceiverThread(transferSocket, transferFile, logWriter);
       fileReceiverThread.start();
    }
 
-   public void send() throws IOException
+   public void send() throws IOException, InterruptedException
    {
-      File toSend = new File("Files\\" + fileName);
+      File toSend = new File(FTPServer.GetFileDir() + "\\" + fileName);
+
+      if(!toSend.exists()) {
+         socketWriter.println("File: \"" + fileName + "\" does not exist!");
+         return;
+      }
 
       int port = MIN_PORT;
 
+
+      portSetSem.acquire();
       for(; port <= MAX_PORT; port++) {
-         if(!portsInUse.contains(port))
+         if(!portsInUse.contains(port) && portsInUse.add(port))
             break;
       }
+      portSetSem.release();
 
       if(port > MAX_PORT) {
          socketWriter.println("ERROR");
          return;
       }
 
-      InetSocketAddress address = new InetSocketAddress(port);
-
-      socketWriter.println("PORT: " + address.getAddress().toString() + " " + port);
+      socketWriter.println("PORT: " + port);
       ServerSocket transferSocket = new ServerSocket();
       transferSocket.bind(new InetSocketAddress(port));
 
@@ -90,5 +96,11 @@ public class GetFile extends Command
 
       FileSenderThread serverThread = new FileSenderThread(socket, toSend, logWriter);
       serverThread.start();
+
+      transferSocket.close();
+
+      portSetSem.acquire();
+      portsInUse.remove(port);
+      portSetSem.release();
    }
 }

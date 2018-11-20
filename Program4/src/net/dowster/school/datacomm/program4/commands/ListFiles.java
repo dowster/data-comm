@@ -1,5 +1,6 @@
 package net.dowster.school.datacomm.program4.commands;
 
+import net.dowster.school.datacomm.program4.ClientConnection;
 import net.dowster.school.datacomm.program4.FTPServer;
 
 import java.io.File;
@@ -17,6 +18,11 @@ public class ListFiles extends Command
    public ListFiles(Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter)
    {
       super(inputScanner, socketWriter, logWriter);
+   }
+
+   public ListFiles(ClientConnection clientConnection, PrintWriter logWriter)
+   {
+      super(clientConnection, logWriter);
    }
 
    @Override
