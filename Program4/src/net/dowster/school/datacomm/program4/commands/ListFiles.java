@@ -1,9 +1,7 @@
 package net.dowster.school.datacomm.program4.commands;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.PrintWriter;
-import java.net.Socket;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -12,7 +10,7 @@ public class ListFiles extends Command
 
    private static String BEGIN = "BEGIN";
    private static String END = "END";
-   private static String LIST = "LIST";
+   private static String LIST = "LIST: ";
 
    public ListFiles(Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter)
    {
