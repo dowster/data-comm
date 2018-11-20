@@ -33,7 +33,7 @@ public class ListFiles extends Command
    public Vector<File> query() {
       Vector<File> fileList = new Vector<File>();
 
-      socketWriter.println(LIST);
+  socketWriter.println(LIST);
 
       if(inputScanner.hasNextLine() && inputScanner.nextLine().contains(BEGIN))
       {
@@ -67,7 +67,6 @@ public class ListFiles extends Command
       logWriter.println("Listed files.");
 
       socketWriter.println(END);
-      socketWriter.flush();
 
    }
 }

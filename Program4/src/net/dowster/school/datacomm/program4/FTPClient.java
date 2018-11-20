@@ -4,8 +4,8 @@ import net.dowster.school.datacomm.program4.commands.GetFile;
 import net.dowster.school.datacomm.program4.commands.ListFiles;
 import net.dowster.school.datacomm.program4.commands.PutFile;
 
+import javax.swing.*;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,8 +14,8 @@ import java.util.TimerTask;
  * @author mattsteiner
  */
 public class FTPClient extends javax.swing.JFrame {
-    ArrayList<File> serverFiles = new ArrayList<File>();
-    ArrayList<File> clientFiles = new ArrayList<File>();
+    DefaultListModel<String> serverFilesListModel = new DefaultListModel<String>();
+   DefaultListModel<String>  clientFilesListModel = new DefaultListModel<String>();
 
    private Timer logFlushTimer = new Timer();
     StringWriter stringWriter = new StringWriter();
@@ -83,26 +83,11 @@ public class FTPClient extends javax.swing.JFrame {
             }
         });
 
-        clientFilesListView.setModel(new javax.swing.AbstractListModel<String>() {
-            public int getSize() {
-                return clientFiles.size();
-            }
-            public String getElementAt(int i) {
-                return clientFiles.get(i).getName();
-            }
-        });
+        clientFilesListView.setModel(clientFilesListModel);
 
         jScrollPane1.setViewportView(clientFilesListView);
 
-        serverFilesListView.setModel(new javax.swing.AbstractListModel<String>() {
-            public int getSize() {
-                return serverFiles.size();
-            }
-
-            public String getElementAt(int i) {
-                return serverFiles.get(i).getName();
-            }
-        });
+        serverFilesListView.setModel(serverFilesListModel);
 
         jScrollPane2.setViewportView(serverFilesListView);
 
@@ -280,24 +265,21 @@ public class FTPClient extends javax.swing.JFrame {
 
    private void listLocalFiles()
    {
-      clientFiles.clear();
+      clientFilesListModel.removeAllElements();
       for (File file: getFileDir().listFiles())
       {
          if(file.isFile()) {
-            clientFiles.add(file);
+            clientFilesListModel.addElement(file.getName());
          }
       }
-      clientFilesListView.updateUI();
    }
 
    private void listRemoteFiles()
    {
       ListFiles fileList = new ListFiles(clientConnection, logWriter);
-      serverFiles.clear();
-      serverFilesListView.updateUI();
+      serverFilesListModel.removeAllElements();
       for(File file : fileList.query())
-         serverFiles.add(file);
-      serverFilesListView.updateUI();
+         serverFilesListModel.addElement(file.getName());
    }
 
    private void getButtonActionPerformed(java.awt.event.ActionEvent evt)

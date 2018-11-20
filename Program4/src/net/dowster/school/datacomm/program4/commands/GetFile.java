@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.StringTokenizer;
 import java.util.concurrent.Semaphore;
 
 public class GetFile extends Command
@@ -53,6 +54,7 @@ public class GetFile extends Command
       }
    }
 
+   // Client requesting the file for the GET command
    public void request() throws IOException
    {
       // Tell the server that we want to "GET: fileName"
@@ -61,13 +63,19 @@ public class GetFile extends Command
 
       // Somewhere to store the port that's returned
       int port;
+
+      StringTokenizer strt = new StringTokenizer("TEST String");
+
+
       if(inputScanner.hasNext("PORT:")) {
-         inputScanner.next();
+            inputScanner.next();
          port = inputScanner.nextInt();
       } else {
       logWriter.print(inputScanner.nextLine());
       return; // Just stop if we don't get a port back, something's wrong
    }
+
+   inputScanner.nextLine();
 
       // Create the new transfer socket for this file.
       Socket transferSocket = new Socket(socket.getInetAddress(), port);
@@ -78,6 +86,7 @@ public class GetFile extends Command
       fileReceiverThread.start();
    }
 
+   // Server sending the file for the GET command
    public void send() throws IOException, InterruptedException
    {
       File toSend = new File(FTPServer.GetFileDir() + "\\" + fileName);

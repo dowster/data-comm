@@ -68,6 +68,8 @@ public class PutFile extends Command
       } else
          return; // Just stop if we don't get a port back, something's wrong
 
+      inputScanner.nextLine();
+
       // Create the new transfer socket for this file.
       Socket transferSocket = new Socket(socket.getInetAddress(), port);
       File transferFile = new File(FTPClient.getFileDir() + "\\" + fileName);
