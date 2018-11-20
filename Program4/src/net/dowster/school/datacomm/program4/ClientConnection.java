@@ -7,6 +7,7 @@ package net.dowster.school.datacomm.program4;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -24,7 +25,10 @@ public class ClientConnection
 
     Socket socket;
     Scanner inputScanner;
-    PrintStream printer;
+
+
+
+    PrintWriter printer;
 
     public ClientConnection(String address, int port) throws IOException
     {
@@ -46,7 +50,14 @@ public class ClientConnection
     public void connect() throws IOException {
         this.socket = new Socket(address, port);
         this.inputScanner = new Scanner(socket.getInputStream());
-        this.printer = new PrintStream(socket.getOutputStream());
+        this.printer = new PrintWriter(socket.getOutputStream());
     }
-    
+
+    public PrintWriter getPrinter() {
+        return printer;
+    }
+
+    public Scanner getInputScanner() {
+        return inputScanner;
+    }
 }

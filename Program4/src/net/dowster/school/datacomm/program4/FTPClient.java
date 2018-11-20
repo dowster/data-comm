@@ -1,5 +1,7 @@
 package net.dowster.school.datacomm.program4;
 
+import net.dowster.school.datacomm.program4.commands.ListFiles;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -227,12 +229,16 @@ public class FTPClient extends javax.swing.JFrame {
 
     private void putButtonActionPerformed(java.awt.event.ActionEvent evt)
     {
-        //TODO:Put files
+        ListFiles fileList = new ListFiles(clientConnection.getInputScanner(),clientConnection.getPrinter(), null);
+
+        serverFiles = new ArrayList<File>(fileList.query());
+        serverFilesListView.updateUI();
     }
 
     private void getButtonActionPerformed(java.awt.event.ActionEvent evt)
     {
         //TODO:Get files
+
     }
 
     private void updateConnectionStatus()
