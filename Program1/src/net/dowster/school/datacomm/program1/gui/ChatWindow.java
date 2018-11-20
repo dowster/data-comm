@@ -152,7 +152,6 @@ public class ChatWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void connectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectButtonActionPerformed
-        
         if(this.chatConnection != null && this.chatConnection.isConnected()) 
             disconnect();
         else
