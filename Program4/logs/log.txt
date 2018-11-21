@@ -20,3 +20,86 @@ Listing files.
 Listed files.
 Listing files.
 Listed files.
+[Tue Nov 20 19:22:11 CST 2018] Connection from /127.0.0.1 on Port: 50315
+/Users/mattsteiner/Documents/data-comm
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+[Tue Nov 20 19:23:03 CST 2018] Connection closed. Port: 50315
+[Tue Nov 20 19:23:04 CST 2018] Connection from /127.0.0.1 on Port: 50322
+/Users/mattsteiner/Documents/data-comm
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+[Tue Nov 20 19:26:01 CST 2018] Connection from /127.0.0.1 on Port: 50372
+/Users/mattsteiner/Documents/data-comm
+Listing files.
+Listed files.
+[Tue Nov 20 19:26:04 CST 2018] Connection closed. Port: 50372
+[Tue Nov 20 19:26:05 CST 2018] Connection from /127.0.0.1 on Port: 50373
+/Users/mattsteiner/Documents/data-comm
+Listing files.
+Listed files.
+[Tue Nov 20 19:26:06 CST 2018] Connection closed. Port: 50373
+[Tue Nov 20 19:26:06 CST 2018] Connection from /127.0.0.1 on Port: 50374
+/Users/mattsteiner/Documents/data-comm
+Listing files.
+Listed files.
+[Tue Nov 20 19:26:06 CST 2018] Connection closed. Port: 50374
+[Tue Nov 20 19:26:06 CST 2018] Connection from /127.0.0.1 on Port: 50375
+/Users/mattsteiner/Documents/data-comm
+Listing files.
+Listed files.
+[Tue Nov 20 19:26:06 CST 2018] Connection closed. Port: 50375
+[Tue Nov 20 19:26:07 CST 2018] Connection from /127.0.0.1 on Port: 50376
+/Users/mattsteiner/Documents/data-comm
+Listing files.
+Listed files.
+[Tue Nov 20 19:26:07 CST 2018] Connection closed. Port: 50376
+[Tue Nov 20 19:26:07 CST 2018] Connection from /127.0.0.1 on Port: 50377
+/Users/mattsteiner/Documents/data-comm
+Listing files.
+Listed files.
+[Tue Nov 20 19:26:07 CST 2018] Connection closed. Port: 50377
+[Tue Nov 20 19:27:28 CST 2018] Connection from /127.0.0.1 on Port: 50401
+/Users/mattsteiner/Documents/data-comm
+Listing files.
+Listed files.
+[Tue Nov 20 19:27:28 CST 2018] Connection closed. Port: 50401
+[Tue Nov 20 19:27:29 CST 2018] Connection from /127.0.0.1 on Port: 50402
+/Users/mattsteiner/Documents/data-comm
+Listing files.
+Listed files.
+[Tue Nov 20 19:27:29 CST 2018] Connection closed. Port: 50402
+[Tue Nov 20 19:27:48 CST 2018] Connection from /127.0.0.1 on Port: 50412
+/Users/mattsteiner/Documents/data-comm
+Listing files.
+Listed files.
+[Tue Nov 20 19:29:47 CST 2018] Connection from /127.0.0.1 on Port: 50441
+/Users/mattsteiner/Documents/data-comm
+Listing files.
+Listed files.

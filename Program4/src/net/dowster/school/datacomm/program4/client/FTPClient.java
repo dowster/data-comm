@@ -31,6 +31,10 @@ public class FTPClient extends javax.swing.JFrame
       logWriter = new PrintWriter(new JTextAreaWriter(this.serverLog), true);
    }
 
+   /**
+    * Gets file directory. Creates one if it doesn't exist.
+    * @return File directory.
+    */
    public static File getFileDir()
    {
       File dir = new File("./ClientFiles/");
@@ -235,6 +239,10 @@ public class FTPClient extends javax.swing.JFrame
       java.awt.EventQueue.invokeLater(() -> new FTPClient().setVisible(true));
    }
 
+   /**
+    * Connects to server if not already connected. Otherwise disconnects from server.
+    * @param evt
+    */
    private void disconnectButtonActionPerformed(java.awt.event.ActionEvent evt)
    {
       if (this.connection != null && this.connection.isConnected())
@@ -243,6 +251,10 @@ public class FTPClient extends javax.swing.JFrame
          connect();
    }
 
+   /**
+    * Puts file from client to server. Updates list view of files.
+    * @param evt
+    */
    private void putButtonActionPerformed(java.awt.event.ActionEvent evt)
    {
       String fileName = clientFilesListView.getSelectedValue();
@@ -250,6 +262,10 @@ public class FTPClient extends javax.swing.JFrame
       updateFileLists();
    }
 
+   /**
+    * Sends a file to server.
+    * @param fileName File to be sent
+    */
    private void sendFile(String fileName)
    {
       try
@@ -262,6 +278,9 @@ public class FTPClient extends javax.swing.JFrame
       delayedListupdate();
    }
 
+   /**
+    * Updates the list of files in both server and client views.
+    */
    private void updateFileLists()
    {
       listRemoteFiles();
@@ -269,6 +288,9 @@ public class FTPClient extends javax.swing.JFrame
       listLocalFiles();
    }
 
+   /**
+    * Updates the list of files stored locally.
+    */
    private void listLocalFiles()
    {
       clientFilesListModel.removeAllElements();
@@ -281,6 +303,9 @@ public class FTPClient extends javax.swing.JFrame
       }
    }
 
+   /**
+    * Updates the list of files stored on the server.
+    */
    private void listRemoteFiles()
    {
       serverFilesListModel.removeAllElements();
@@ -288,12 +313,20 @@ public class FTPClient extends javax.swing.JFrame
          serverFilesListModel.addElement(file.getName());
    }
 
+   /**
+    * Sends file
+    * @param evt
+    */
    private void getButtonActionPerformed(java.awt.event.ActionEvent evt)
    {
       String fileName = serverFilesListView.getSelectedValue();
       getFile(fileName);
    }
 
+   /**
+    * Gets file from server.
+    * @param fileName File to be sent.
+    */
    private void getFile(String fileName)
    {
       try
@@ -306,6 +339,9 @@ public class FTPClient extends javax.swing.JFrame
       delayedListupdate();
    }
 
+   /**
+    * Updates the connection, put, and get buttons to reflection connection status.
+    */
    private void updateConnectionStatus()
    {
       if (this.connection != null && this.connection.isConnected())
@@ -321,6 +357,9 @@ public class FTPClient extends javax.swing.JFrame
       }
    }
 
+   /**
+    * Disconnects from server.
+    */
    private void disconnect()
    {
       try
@@ -334,6 +373,9 @@ public class FTPClient extends javax.swing.JFrame
       updateConnectionStatus();
    }
 
+   /**
+    * Connects to server with specified port and IP address.
+    */
    private void connect()
    {
       try
@@ -371,6 +413,9 @@ public class FTPClient extends javax.swing.JFrame
    private javax.swing.JList<String> serverFilesListView;
    // End of variables declaration//GEN-END:variables
 
+   /**
+    * Delays the update the lists to avoid a huge spam mess.
+    */
    private void delayedListupdate()
    {
       if (connection != null && connection.isConnected())
