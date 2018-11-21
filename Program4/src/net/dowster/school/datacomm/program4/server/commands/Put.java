@@ -14,14 +14,23 @@ import java.util.concurrent.Semaphore;
 
 import static net.dowster.school.datacomm.program4.Dictionary.Put.PORT;
 
+/**
+ * Command to allow clients to put files onto the server.
+ */
 public class Put extends Command
 {
    private static Semaphore portSetSem = new Semaphore(1);
-
    private static int PUT_PORT = 5775;
-
    private String fileName;
 
+   /**
+    * Create an instance of the Put command, this should only be used by the
+    * command factory.
+    *
+    * @param inputScanner input from the control connection.
+    * @param socketWriter writer to the control connection.
+    * @param logWriter writer to wherever the log output is supposed to go.
+    */
    public Put(Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter)
    {
       super(inputScanner, socketWriter, logWriter);
@@ -40,8 +49,12 @@ public class Put extends Command
       }
    }
 
-
-
+   /**
+    * Receive a file from the client.
+    *
+    * @throws IOException if there are issues with the IO streams
+    * @throws InterruptedException if we are interrupted from the semaphore
+    */
    public void receive() throws IOException, InterruptedException
    {
       File toReceive = new File(FTPServer.GetFileDir(), fileName);

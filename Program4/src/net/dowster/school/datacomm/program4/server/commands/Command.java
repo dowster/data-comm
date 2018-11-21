@@ -1,32 +1,36 @@
 package net.dowster.school.datacomm.program4.server.commands;
 
-import net.dowster.school.datacomm.program4.client.Connection;
-
 import java.io.PrintWriter;
-import java.net.Socket;
 import java.util.Scanner;
 
-public abstract class Command extends Thread
+/**
+ * Abstract class for creating FTP Server Commands.
+ */
+public abstract class Command
 {
-   protected Socket socket;
    protected Scanner inputScanner;
    protected PrintWriter socketWriter;
    protected PrintWriter logWriter;
 
+   /**
+    * Create an instance of the a command, this should only be used by the
+    * command factory.
+    *
+    * @param inputScanner input from the control connection.
+    * @param socketWriter writer to the control connection.
+    * @param logWriter writer to wherever the log output is supposed to go.
+    */
    public Command (Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter) {
       this.inputScanner = inputScanner;
       this.socketWriter = socketWriter;
       this.logWriter = logWriter;
    }
 
-   public Command (Connection connection, PrintWriter logWriter) {
-      this.socket = connection.getSocket();
-      this.inputScanner = connection.getInputScanner();
-      this.socketWriter = connection.getSocketWriter();
-      this.logWriter = logWriter;
-   }
-
+   /**
+    * Execute the commands specific behavior. This should be overridden by the
+    * child class.
+    */
    public void execute() {
-      this.start();
+
    }
 }
