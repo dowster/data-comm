@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public abstract class Command
 {
-   protected Scanner inputScanner;
+
    protected PrintWriter socketWriter;
    protected PrintWriter logWriter;
 
@@ -16,12 +16,11 @@ public abstract class Command
     * Create an instance of the a command, this should only be used by the
     * command factory.
     *
-    * @param inputScanner input from the control connection.
     * @param socketWriter writer to the control connection.
     * @param logWriter writer to wherever the log output is supposed to go.
     */
-   public Command (Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter) {
-      this.inputScanner = inputScanner;
+   public Command ( PrintWriter socketWriter, PrintWriter logWriter) {
+
       this.socketWriter = socketWriter;
       this.logWriter = logWriter;
    }

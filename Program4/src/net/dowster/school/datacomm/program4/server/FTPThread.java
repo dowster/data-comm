@@ -1,13 +1,16 @@
 package net.dowster.school.datacomm.program4.server;
 
-import net.dowster.school.datacomm.program4.server.commands.Command;
-import net.dowster.school.datacomm.program4.server.commands.CommandFactory;
-import net.dowster.school.datacomm.program4.server.commands.Get;
+import net.dowster.school.datacomm.program4.server.commands.*;
+import net.dowster.school.datacomm.program4.server.commands.List;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.*;
+
+import static net.dowster.school.datacomm.program4.Dictionary.Get.GET;
+import static net.dowster.school.datacomm.program4.Dictionary.List.LIST;
+import static net.dowster.school.datacomm.program4.Dictionary.Put.PUT;
 
 /**
  * Implementation of Thread which handles a server thread for the cipher
@@ -64,9 +67,12 @@ public class FTPThread extends Thread
 
       while (inputScanner.hasNext())
       {
-         Command command = CommandFactory.createCommand(inputScanner, socketWriter, logWriter);
-         if(command != null)
-            command.execute();
+         switch (inputScanner.next())
+         {
+            case LIST: listFiles(); break;
+            case GET: sendFile(inputScanner.nextLine().trim()); break;
+            case PUT: getFile(inputScanner.nextLine().trim()); break;
+         }
       }
 
       logWriter.println("[" + (new Date()).toString() + "] " +
@@ -79,5 +85,31 @@ public class FTPThread extends Thread
       {
          e.printStackTrace(logWriter);
       }
+   }
+
+   /**
+    * Get the file from the client.
+    * @param fileName file name
+    */
+   private void getFile(String fileName)
+   {
+      (new Put(socketWriter, logWriter, fileName)).execute();
+   }
+
+   /**
+    * Send the file to the client
+    * @param fileName file name
+    */
+   private void sendFile(String fileName)
+   {
+      (new Get(socketWriter, logWriter, fileName)).execute();
+   }
+
+   /**
+    * Send list of files to the client.
+    */
+   private void listFiles()
+   {
+      (new List(socketWriter, logWriter)).execute();
    }
 }

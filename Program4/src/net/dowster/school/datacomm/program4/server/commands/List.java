@@ -19,13 +19,12 @@ public class List extends Command
     * Create an instance of the List command, this should only be used by the
     * command factory.
     *
-    * @param inputScanner input from the control connection.
     * @param socketWriter writer to the control connection.
     * @param logWriter writer to wherever the log output is supposed to go.
     */
-   public List(Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter)
+   public List(PrintWriter socketWriter, PrintWriter logWriter)
    {
-      super(inputScanner, socketWriter, logWriter);
+      super(socketWriter, logWriter);
    }
 
    @Override

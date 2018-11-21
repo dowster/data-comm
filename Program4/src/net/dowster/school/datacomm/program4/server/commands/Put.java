@@ -27,14 +27,13 @@ public class Put extends Command
     * Create an instance of the Put command, this should only be used by the
     * command factory.
     *
-    * @param inputScanner input from the control connection.
     * @param socketWriter writer to the control connection.
     * @param logWriter writer to wherever the log output is supposed to go.
     */
-   public Put(Scanner inputScanner, PrintWriter socketWriter, PrintWriter logWriter)
+   public Put(PrintWriter socketWriter, PrintWriter logWriter, String fileName)
    {
-      super(inputScanner, socketWriter, logWriter);
-      fileName = inputScanner.nextLine().trim();
+      super(socketWriter, logWriter);
+      this.fileName = fileName;
    }
 
    @Override
