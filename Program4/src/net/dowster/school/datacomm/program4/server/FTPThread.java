@@ -1,11 +1,10 @@
-package net.dowster.school.datacomm.program4;
+package net.dowster.school.datacomm.program4.server;
 
-import net.dowster.school.datacomm.program4.commands.Command;
-import net.dowster.school.datacomm.program4.commands.CommandProcessor;
+import net.dowster.school.datacomm.program4.server.commands.Command;
+import net.dowster.school.datacomm.program4.server.commands.CommandFactory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigInteger;
 import java.net.Socket;
 import java.util.*;
 
@@ -64,7 +63,7 @@ public class FTPThread extends Thread
 
       while (inputScanner.hasNext())
       {
-         Command command = CommandProcessor.createCommand(inputScanner, socketWriter, logWriter);
+         Command command = CommandFactory.createCommand(inputScanner, socketWriter, logWriter);
          if(command != null)
             command.execute();
       }

@@ -1,6 +1,6 @@
-package net.dowster.school.datacomm.program4.commands;
+package net.dowster.school.datacomm.program4.server.commands;
 
-import net.dowster.school.datacomm.program4.ClientConnection;
+import net.dowster.school.datacomm.program4.client.Connection;
 
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -19,10 +19,10 @@ public abstract class Command extends Thread
       this.logWriter = logWriter;
    }
 
-   public Command (ClientConnection clientConnection, PrintWriter logWriter) {
-      this.socket = clientConnection.getSocket();
-      this.inputScanner = clientConnection.getInputScanner();
-      this.socketWriter = clientConnection.getPrinter();
+   public Command (Connection connection, PrintWriter logWriter) {
+      this.socket = connection.getSocket();
+      this.inputScanner = connection.getInputScanner();
+      this.socketWriter = connection.getSocketWriter();
       this.logWriter = logWriter;
    }
 

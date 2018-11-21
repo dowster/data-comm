@@ -34,7 +34,7 @@ public class FileReceiverThread extends Thread
       {
          OutputStream fos = new FileOutputStream(transferFile);
          InputStream sis  = socket.getInputStream();
-
+         
          byte [] buffer = new byte[1024];
          int readBytes;
          while((readBytes = sis.read(buffer)) > -1) {

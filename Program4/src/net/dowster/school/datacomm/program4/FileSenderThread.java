@@ -44,8 +44,6 @@ public class FileSenderThread extends Thread
 
          fis.close();
          sos.close();
-         socket.shutdownInput();
-         socket.shutdownOutput();
          socket.close();
 
       } catch (IOException e)

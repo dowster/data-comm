@@ -1,4 +1,4 @@
-package net.dowster.school.datacomm.program4;
+package net.dowster.school.datacomm.program4.server;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -15,11 +15,11 @@ import java.net.Socket;
 public class FTPServer {
 
    private static final int SERVER_PORT = 5721;
-   public static final String LOG_PATH = "program4\\";
-   public static final String LOG_FILE = "log.txt";
+   public static final File LOG_PATH = new File("program4","logs");
+   public static final File LOG_FILE = new File(LOG_PATH,"log.txt");
 
-   private FileWriter logFile;
-   private PrintWriter logWriter;
+   private FileWriter logFileWriter;
+   private PrintWriter logPrintWriter;
 
    private ServerSocket serverSocket;
 
@@ -46,17 +46,15 @@ public class FTPServer {
       serverSocket = new ServerSocket();
       serverSocket.bind(new InetSocketAddress(SERVER_PORT));
 
-      File test = new File(LOG_PATH);
-      test.mkdirs();
+      LOG_PATH.mkdirs();
 
-      logFile = new FileWriter(LOG_PATH + LOG_FILE, true);
-      logWriter = new PrintWriter(logFile, true);
-
+      logFileWriter = new FileWriter(LOG_FILE, true);
+      logPrintWriter = new PrintWriter(logFileWriter, true);
    }
 
    public static File GetFileDir()
    {
-      File dir = new File(".\\Files\\");
+      File dir = new File(".\\ServerFiles\\");
       if(!dir.exists())
          dir.mkdirs();
 
@@ -64,7 +62,7 @@ public class FTPServer {
    }
 
    /**
-    * Run the socket server handling code. Each connection will get its own
+    * Run the socket server handling code. Each connection will Get its own
     * serverThread to run on.
     * @throws IOException
     */
@@ -75,13 +73,13 @@ public class FTPServer {
       {
          while ((socket = serverSocket.accept()) != null)
          {
-            FTPThread serverThread = new FTPThread(socket, logWriter);
+            FTPThread serverThread = new FTPThread(socket, logPrintWriter);
             serverThread.start();
          }
       }
       catch (IOException e)
       {
-         e.printStackTrace(logWriter);
+         e.printStackTrace(logPrintWriter);
       }
    }
 }

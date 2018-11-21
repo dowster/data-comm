@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.dowster.school.datacomm.program4;
+package net.dowster.school.datacomm.program4.client;
 
 import java.io.IOException;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
@@ -17,7 +16,7 @@ import java.util.Scanner;
  * 
  * @author dowbr
  */
-public class ClientConnection
+public class Connection
 {
 
     String address;
@@ -25,12 +24,9 @@ public class ClientConnection
 
     Socket socket;
     Scanner inputScanner;
+    PrintWriter socketWriter;
 
-
-
-    PrintWriter printer;
-
-    public ClientConnection(String address, int port) throws IOException
+    public Connection(String address, int port) throws IOException
     {
         this.address = address;
         this.port = port;
@@ -44,17 +40,17 @@ public class ClientConnection
     public void disconnect() throws IOException {
         this.socket.close();
         this.inputScanner = null;
-        this.printer = null;
+        this.socketWriter = null;
     }
     
     public void connect() throws IOException {
         this.socket = new Socket(address, port);
         this.inputScanner = new Scanner(socket.getInputStream());
-        this.printer = new PrintWriter(socket.getOutputStream(), true);
+        this.socketWriter = new PrintWriter(socket.getOutputStream(), true);
     }
 
-    public PrintWriter getPrinter() {
-        return printer;
+    public PrintWriter getSocketWriter() {
+        return socketWriter;
     }
 
     public Scanner getInputScanner() {

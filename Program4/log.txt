@@ -1,0 +1,307 @@
+[Mon Nov 19 22:39:19 CST 2018] Connection from /0:0:0:0:0:0:0:1 on Port: 17540
+[Mon Nov 19 22:40:13 CST 2018] Connection from /0:0:0:0:0:0:0:1 on Port: 17595
+[Mon Nov 19 23:47:41 CST 2018] Connection from /127.0.0.1 on Port: 2091
+[Mon Nov 19 23:49:16 CST 2018] Connection from /127.0.0.1 on Port: 2192
+[Mon Nov 19 23:53:39 CST 2018] Connection from /127.0.0.1 on Port: 2475
+[Tue Nov 20 00:02:12 CST 2018] Connection from /127.0.0.1 on Port: 3314
+[Tue Nov 20 00:03:12 CST 2018] Connection from /127.0.0.1 on Port: 3390
+[Tue Nov 20 00:04:51 CST 2018] Connection from /127.0.0.1 on Port: 3568
+[Tue Nov 20 00:06:10 CST 2018] Connection from /127.0.0.1 on Port: 3655
+[Tue Nov 20 00:10:34 CST 2018] Connection from /127.0.0.1 on Port: 3959
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:14:12 CST 2018] Connection from /127.0.0.1 on Port: 4196
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:15:28 CST 2018] Connection closed. Port: 4196
+[Tue Nov 20 00:23:43 CST 2018] Connection from /127.0.0.1 on Port: 4845
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:24:53 CST 2018] Connection from /127.0.0.1 on Port: 4921
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:26:35 CST 2018] Connection from /127.0.0.1 on Port: 5029
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:28:29 CST 2018] Connection from /127.0.0.1 on Port: 5154
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:30:23 CST 2018] Connection from /127.0.0.1 on Port: 5273
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:31:37 CST 2018] Connection from /127.0.0.1 on Port: 5360
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:34:54 CST 2018] Connection from /127.0.0.1 on Port: 5581
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:35:23 CST 2018] Connection from /127.0.0.1 on Port: 5616
+C:\Users\dowster\IdeaProjects\DataComm
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.DualStackPlainSocketImpl.bind0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketBind(DualStackPlainSocketImpl.java:106)
+	at java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:387)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:190)
+	at java.net.ServerSocket.bind(ServerSocket.java:375)
+	at java.net.ServerSocket.bind(ServerSocket.java:329)
+	at net.dowster.school.datacomm.program4.server.commands.Get.send(GetFile.java:90)
+	at net.dowster.school.datacomm.program4.server.commands.Get.execute(GetFile.java:41)
+	at net.dowster.school.datacomm.program4.server.FTPThread.run(FTPThread.java:69)
+[Tue Nov 20 00:37:52 CST 2018] Connection from /127.0.0.1 on Port: 5773
+C:\Users\dowster\IdeaProjects\DataComm
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:46)
+[Tue Nov 20 00:38:37 CST 2018] Connection from /127.0.0.1 on Port: 5824
+C:\Users\dowster\IdeaProjects\DataComm
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+[Tue Nov 20 00:47:26 CST 2018] Connection from /127.0.0.1 on Port: 6537
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:47:28 CST 2018] Connection from /127.0.0.1 on Port: 6540
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:47:30 CST 2018] Connection from /127.0.0.1 on Port: 6543
+C:\Users\dowster\IdeaProjects\DataComm
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+[Tue Nov 20 00:48:16 CST 2018] Connection from /127.0.0.1 on Port: 6589
+C:\Users\dowster\IdeaProjects\DataComm
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+[Tue Nov 20 00:49:18 CST 2018] Connection closed. Port: 6589
+[Tue Nov 20 00:49:20 CST 2018] Connection closed. Port: 6540
+[Tue Nov 20 00:49:26 CST 2018] Connection closed. Port: 6543
+[Tue Nov 20 00:49:57 CST 2018] Connection from /127.0.0.1 on Port: 6693
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:50:00 CST 2018] Connection from /127.0.0.1 on Port: 6698
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:50:03 CST 2018] Connection from /127.0.0.1 on Port: 6701
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:50:16 CST 2018] Connection from /127.0.0.1 on Port: 6716
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:50:22 CST 2018] Connection closed. Port: 6537
+[Tue Nov 20 00:50:24 CST 2018] Connection closed. Port: 6698
+[Tue Nov 20 00:50:26 CST 2018] Connection closed. Port: 6716
+[Tue Nov 20 00:50:28 CST 2018] Connection closed. Port: 6701
+[Tue Nov 20 00:50:30 CST 2018] Connection closed. Port: 6693
+[Tue Nov 20 00:53:47 CST 2018] Connection from /127.0.0.1 on Port: 6935
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:54:12 CST 2018] Connection closed. Port: 6935
+[Tue Nov 20 00:56:37 CST 2018] Connection from /127.0.0.1 on Port: 7124
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 00:58:46 CST 2018] Connection closed. Port: 7124
+[Tue Nov 20 01:00:09 CST 2018] Connection from /127.0.0.1 on Port: 7348
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 01:01:48 CST 2018] Connection closed. Port: 7348
+[Tue Nov 20 01:03:06 CST 2018] Connection from /127.0.0.1 on Port: 7544
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 01:03:25 CST 2018] Connection closed. Port: 7544
+[Tue Nov 20 01:05:47 CST 2018] Connection from /127.0.0.1 on Port: 7716
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 01:06:16 CST 2018] Connection closed. Port: 7716
+[Tue Nov 20 01:06:35 CST 2018] Connection from /127.0.0.1 on Port: 7761
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 01:07:30 CST 2018] Connection closed. Port: 7761
+[Tue Nov 20 01:07:53 CST 2018] Connection from /127.0.0.1 on Port: 7849
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 01:09:27 CST 2018] Connection closed. Port: 7849
+[Tue Nov 20 01:11:43 CST 2018] Connection from /127.0.0.1 on Port: 8078
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 01:31:58 CST 2018] Connection closed. Port: 8078
+[Tue Nov 20 01:32:18 CST 2018] Connection from /127.0.0.1 on Port: 9466
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 01:33:01 CST 2018] Connection closed. Port: 9466
+[Tue Nov 20 01:33:22 CST 2018] Connection from /127.0.0.1 on Port: 9534
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 01:34:01 CST 2018] Connection closed. Port: 9534
+[Tue Nov 20 01:36:34 CST 2018] Connection from /127.0.0.1 on Port: 9743
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 01:38:03 CST 2018] Connection closed. Port: 9743
+[Tue Nov 20 01:38:27 CST 2018] Connection from /127.0.0.1 on Port: 9891
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 01:47:58 CST 2018] Connection from /127.0.0.1 on Port: 10522
+C:\Users\dowster\IdeaProjects\DataComm
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+[Tue Nov 20 01:50:43 CST 2018] Connection from /127.0.0.1 on Port: 10711
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 01:50:57 CST 2018] Connection closed. Port: 10711
+[Tue Nov 20 01:52:55 CST 2018] Connection from /127.0.0.1 on Port: 10848
+C:\Users\dowster\IdeaProjects\DataComm
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+[Tue Nov 20 01:54:35 CST 2018] Connection closed. Port: 10848
+[Tue Nov 20 01:54:35 CST 2018] Connection from /127.0.0.1 on Port: 10959
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 01:55:42 CST 2018] Connection from /127.0.0.1 on Port: 11032
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 01:57:28 CST 2018] Connection from /127.0.0.1 on Port: 11158
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 01:58:53 CST 2018] Connection from /127.0.0.1 on Port: 11250
+C:\Users\dowster\IdeaProjects\DataComm
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+[Tue Nov 20 02:02:48 CST 2018] Connection closed. Port: 11250
+[Tue Nov 20 02:03:03 CST 2018] Connection from /127.0.0.1 on Port: 11509
+C:\Users\dowster\IdeaProjects\DataComm
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+[Tue Nov 20 02:03:11 CST 2018] Connection closed. Port: 11509
+[Tue Nov 20 02:03:12 CST 2018] Connection from /127.0.0.1 on Port: 11520
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 02:04:29 CST 2018] Connection closed. Port: 11520
+[Tue Nov 20 02:04:30 CST 2018] Connection from /127.0.0.1 on Port: 11598
+C:\Users\dowster\IdeaProjects\DataComm
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+[Tue Nov 20 02:07:50 CST 2018] Connection closed. Port: 11598
+[Tue Nov 20 02:10:41 CST 2018] Connection from /127.0.0.1 on Port: 12005
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 02:11:43 CST 2018] Connection closed. Port: 12005
+[Tue Nov 20 02:11:57 CST 2018] Connection from /127.0.0.1 on Port: 12096
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 02:12:06 CST 2018] Connection closed. Port: 12096
+[Tue Nov 20 02:14:10 CST 2018] Connection from /127.0.0.1 on Port: 12254
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 02:14:17 CST 2018] Connection closed. Port: 12254
+[Tue Nov 20 02:15:01 CST 2018] Connection from /127.0.0.1 on Port: 12311
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 02:18:35 CST 2018] Connection from /127.0.0.1 on Port: 12538
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 02:22:21 CST 2018] Connection from /127.0.0.1 on Port: 12775
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 02:22:48 CST 2018] Connection closed. Port: 12775
+[Tue Nov 20 02:23:11 CST 2018] Connection from /127.0.0.1 on Port: 12830
+C:\Users\dowster\IdeaProjects\DataComm
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+[Tue Nov 20 02:23:28 CST 2018] Connection closed. Port: 12830
+[Tue Nov 20 02:23:29 CST 2018] Connection from /127.0.0.1 on Port: 12849
+C:\Users\dowster\IdeaProjects\DataComm
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+[Tue Nov 20 02:24:13 CST 2018] Connection closed. Port: 12849
+[Tue Nov 20 02:24:25 CST 2018] Connection from /127.0.0.1 on Port: 12912
+C:\Users\dowster\IdeaProjects\DataComm
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+[Tue Nov 20 02:24:41 CST 2018] Connection from /127.0.0.1 on Port: 12929
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 02:25:04 CST 2018] Connection closed. Port: 12912
+[Tue Nov 20 02:25:16 CST 2018] Connection from /127.0.0.1 on Port: 12970
+C:\Users\dowster\IdeaProjects\DataComm
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+[Tue Nov 20 02:29:50 CST 2018] Connection from /127.0.0.1 on Port: 13268
+C:\Users\dowster\IdeaProjects\DataComm
+Listing files.
+Listed files.
+[Tue Nov 20 02:30:05 CST 2018] Connection from /127.0.0.1 on Port: 13289
+C:\Users\dowster\IdeaProjects\DataComm
+Listing files.
+Listed files.
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+Listing files.
+[Tue Nov 20 02:33:40 CST 2018] Connection from /127.0.0.1 on Port: 13480
+Listed files.
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 02:35:07 CST 2018] Connection from /127.0.0.1 on Port: 13598
+C:\Users\dowster\IdeaProjects\DataComm
+[Tue Nov 20 02:35:11 CST 2018] Connection from /127.0.0.1 on Port: 13603
+C:\Users\dowster\IdeaProjects\DataComm
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+[Tue Nov 20 02:35:36 CST 2018] Connection closed. Port: 13603
+[Tue Nov 20 02:35:38 CST 2018] Connection closed. Port: 13598
+[Tue Nov 20 03:04:26 CST 2018] Connection from /127.0.0.1 on Port: 14411
+C:\Users\dowster\IdeaProjects\DataComm
+Listing files.
+Listed files.
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+Listing files.
+Listed files.
+[Tue Nov 20 03:06:06 CST 2018] Connection closed. Port: 14411
+[Tue Nov 20 03:06:07 CST 2018] Connection from /127.0.0.1 on Port: 14511
+C:\Users\dowster\IdeaProjects\DataComm
+Listing files.
+Listed files.
+[Tue Nov 20 03:06:33 CST 2018] Connection closed. Port: 14511
+[Tue Nov 20 03:11:59 CST 2018] Connection from /127.0.0.1 on Port: 14876
+C:\Users\dowster\IdeaProjects\DataComm
+Listing files.
+Listed files.
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+[Tue Nov 20 03:14:40 CST 2018] Connection from /127.0.0.1 on Port: 15057
+C:\Users\dowster\IdeaProjects\DataComm
+Listing files.
+Listed files.
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+Listing files.
+Listed files.
+[Tue Nov 20 03:15:06 CST 2018] Connection closed. Port: 15057
+[Tue Nov 20 03:16:59 CST 2018] Connection from /127.0.0.1 on Port: 15202
+C:\Users\dowster\IdeaProjects\DataComm
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+Listing files.
+Listed files.
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+Listing files.
+Listed files.
+[Tue Nov 20 13:15:08 CST 2018] Connection from /127.0.0.1 on Port: 24179
+C:\Users\dowster\IdeaProjects\DataComm
+Listing files.
+Listed files.
+java.net.SocketException: Socket is closed
+	at java.net.Socket.shutdownInput(Socket.java:1521)
+	at net.dowster.school.datacomm.program4.FileSenderThread.run(FileSenderThread.java:47)
+[Tue Nov 20 13:15:49 CST 2018] Connection closed. Port: 24179
