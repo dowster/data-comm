@@ -1,7 +1,5 @@
 package net.dowster.school.datacomm.program4.server.commands;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -19,6 +17,6 @@ public class CommandFactory
          case GET: return new Get(inputScanner, socketWriter, logWriter);
          case PUT: return new Put(inputScanner, socketWriter, logWriter);
       }
-      throw new NotImplementedException();
+      return null;
    }
 }

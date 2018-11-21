@@ -27,16 +27,12 @@ public class List extends Command
 
       socketWriter.println(BEGIN);
 
-      logWriter.println("Listing files.");
-
       for (File file: dir.listFiles())
       {
          if(file.isFile()) {
             socketWriter.println(file.getName());
          }
       }
-
-      logWriter.println("Listed files.");
 
       socketWriter.println(END);
 
