@@ -13,6 +13,13 @@ import static net.dowster.school.datacomm.program4.Dictionary.*;
 
 public class Commands
 {
+   /**
+    * Sends a file to the server.
+    * @param connection Client-Server connection
+    * @param fileName File to be sent
+    * @param logWriter Server log.
+    * @throws IOException
+    */
    public static void Send(Connection connection, String fileName, PrintWriter logWriter) throws IOException
    {
       // Tell the server that we want to "PUT fileName"
@@ -37,7 +44,13 @@ public class Commands
       fileSenderThread.start();
    }
 
-   // Client requesting the file for the GET command
+   /**
+    * // Client requesting the file for the GET command
+    * @param connection Client connection
+    * @param fileName FIle to be received by client
+    * @param logWriter Server log
+    * @throws IOException
+    */
    public static void Get(Connection connection, String fileName, PrintWriter logWriter) throws IOException
    {
       // Tell the server that we want to "GET: fileName"
@@ -68,6 +81,12 @@ public class Commands
       fileReceiverThread.start();
    }
 
+   /**
+    * Gets the file list from the server.
+    * @param connection Client-server connection.
+    * @param logWriter Server log
+    * @return
+    */
    public static Vector<File> List(Connection connection, PrintWriter logWriter) {
       Vector<File> fileList = new Vector<File>();
 
