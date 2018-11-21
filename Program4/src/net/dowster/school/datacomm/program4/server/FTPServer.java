@@ -50,12 +50,12 @@ public class FTPServer {
 
       logFileWriter = new FileWriter(LOG_FILE, true);
       //logPrintWriter = new PrintWriter(logFileWriter, true);
-      logPrintWriter = new PrintWriter(System.out);
+      logPrintWriter = new PrintWriter(System.out, true);
    }
 
    public static File GetFileDir()
    {
-      File dir = new File(".\\ServerFiles\\");
+      File dir = new File("./ServerFiles/");
       if(!dir.exists())
          dir.mkdirs();
 

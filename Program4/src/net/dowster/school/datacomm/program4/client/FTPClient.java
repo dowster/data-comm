@@ -33,7 +33,7 @@ public class FTPClient extends javax.swing.JFrame
 
    public static File getFileDir()
    {
-      File dir = new File(".\\ClientFiles\\");
+      File dir = new File("./ClientFiles/");
       if (!dir.exists())
          dir.mkdirs();
       return dir;
@@ -67,6 +67,9 @@ public class FTPClient extends javax.swing.JFrame
       serverLog = new javax.swing.JTextArea();
 
       hostLabel.setText("Host");
+
+      serverAddressField.setText("127.0.0.1");
+      serverPort.setText("5721");
 
       portLabel.setText("Port");
 
