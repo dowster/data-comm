@@ -366,6 +366,7 @@ public class FTPClient extends javax.swing.JFrame
       {
          this.connection.disconnect();
          this.connection = null;
+
       } catch (IOException e)
       {
          this.connection = null;
