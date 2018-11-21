@@ -34,7 +34,9 @@ public class FileReceiverThread extends Thread
       {
          OutputStream fos = new FileOutputStream(transferFile);
          InputStream sis  = socket.getInputStream();
-         
+
+         logWriter.println("Receiving the file...");
+
          byte [] buffer = new byte[1024];
          int readBytes;
          while((readBytes = sis.read(buffer)) > -1) {
@@ -44,6 +46,10 @@ public class FileReceiverThread extends Thread
 
          fos.close();
          socket.close();
+
+         logWriter.println("Got the file: " + transferFile.getName());
+         logWriter.println("Size: " + transferFile.length() + " Bytes.");
+         logWriter.println("Data Connection Closed.");
 
       } catch (IOException e)
       {

@@ -55,6 +55,9 @@ public class Put extends Command
 
       Socket socket = transferSocket.accept();
 
+      logWriter.println("Data connection local port# " + socket.getLocalPort() +
+            " remote port# " + socket.getPort());
+
       FileReceiverThread receiverThread = new FileReceiverThread(socket, toReceive, logWriter);
       receiverThread.start();
 

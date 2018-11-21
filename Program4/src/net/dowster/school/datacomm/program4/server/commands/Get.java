@@ -58,6 +58,9 @@ public class Get extends Command
 
       Socket socket = transferSocket.accept();
 
+      logWriter.println("Data connection local port# " + socket.getLocalPort() +
+            " remote port# " + socket.getPort());
+
       FileSenderThread serverThread = new FileSenderThread(socket, toSend, logWriter);
       serverThread.start();
 

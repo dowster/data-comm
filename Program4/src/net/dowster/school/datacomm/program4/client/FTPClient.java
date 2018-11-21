@@ -28,7 +28,7 @@ public class FTPClient extends javax.swing.JFrame
       this.getButton.setEnabled(false);
       this.putButton.setEnabled(false);
 
-      logWriter = new PrintWriter(new JTextAreaWriter(this.serverLog));
+      logWriter = new PrintWriter(new JTextAreaWriter(this.serverLog), true);
    }
 
    public static File getFileDir()
@@ -101,7 +101,7 @@ public class FTPClient extends javax.swing.JFrame
          }
       });
 
-      getButton.setText("List");
+      getButton.setText("Get");
       getButton.setToolTipText("");
       getButton.addActionListener(new java.awt.event.ActionListener()
       {

@@ -49,7 +49,8 @@ public class FTPServer {
       LOG_PATH.mkdirs();
 
       logFileWriter = new FileWriter(LOG_FILE, true);
-      logPrintWriter = new PrintWriter(logFileWriter, true);
+      //logPrintWriter = new PrintWriter(logFileWriter, true);
+      logPrintWriter = new PrintWriter(System.out);
    }
 
    public static File GetFileDir()

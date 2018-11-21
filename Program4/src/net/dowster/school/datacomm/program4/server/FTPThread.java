@@ -50,7 +50,7 @@ public class FTPThread extends Thread
    {
       super.run();
 
-      logWriter.println("[" + (new Date()).toString() + "] Connection from " +
+      logWriter.println("[" + (new Date()).toString() + "] Control connection from " +
             socket.getInetAddress() + " on Port: " + socket.getPort());
 
       try
@@ -69,7 +69,7 @@ public class FTPThread extends Thread
       }
 
       logWriter.println("[" + (new Date()).toString() + "] " +
-            "Connection closed. Port: " + socket.getPort());
+            "Control connection closed. Port: " + socket.getPort());
 
       try
       {
