@@ -8,7 +8,7 @@ public class LSRouting
    public static void main(String[] arrrrgs)
    {
       int network[][];
-      int startRouter;
+      int startRouter = -1;
 
       Scanner inputScanner = new Scanner(System.in);
 
@@ -26,9 +26,9 @@ public class LSRouting
          startRouter = currentLine[0];
 
          for(int link = 1; link < currentLine.length - 1; link++ )
-            network[currentLine[0] - 1][currentLine[link]] = currentLine[++link];
+            network[currentLine[0] - 1][currentLine[link] - 1] = currentLine[++link];
       }
 
-      System.out.println("Yo we done");
+      System.out.println("Yo we done, start at: " + startRouter);
    }
 }
