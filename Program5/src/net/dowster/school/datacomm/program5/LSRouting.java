@@ -15,6 +15,9 @@ public class LSRouting
       int networkSize = inputScanner.nextInt();
       network = new int[networkSize][networkSize];
 
+      // Clear the rest of the first line.
+      inputScanner.nextLine();
+
       while(inputScanner.hasNextLine()) {
          int[] currentLine =
                Arrays.stream(inputScanner.nextLine().split(" "))
@@ -23,12 +26,9 @@ public class LSRouting
          startRouter = currentLine[0];
 
          for(int link = 1; link < currentLine.length - 1; link++ )
-            network[currentLine[0]][currentLine[link]] = currentLine[++link];
+            network[currentLine[0] - 1][currentLine[link]] = currentLine[++link];
       }
 
-
-
-
-
+      System.out.println("Yo we done");
    }
 }
