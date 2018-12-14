@@ -3,6 +3,7 @@ package net.dowster.school.datacomm.program5;
 import javafx.util.Pair;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class LSRouting
 {
@@ -34,30 +35,23 @@ public class LSRouting
 
       sortNetwork(network, startRouter);
 
-      printFrom(network, startRouter);
+      printPath(network, startRouter);
    }
 
    /**
-    * TODO: Refactor this to use the getPath method once that's complete.
-    *
     * Prints out all the shortest paths from startRouter to all other routers.
     *
-    * @param network
-    * @param startRouter
+    * @param net
+    * @param start
     */
-   private static void printFrom(Pair<Integer, Integer>[][] network, int startRouter)
+   private static void printPath(Pair<Integer, Integer>[][] net, int start)
    {
-      for(int dest = 1; dest <= network.length; dest++)
+      for(int dest = 1; dest <= net.length; dest++)
       {
          System.out.print("Shortest path to router " + dest + ":");
-         int hop = startRouter;
-         System.out.print(" " + hop);
-         while(network[startRouter - 1][hop - 1].getKey() != dest)
-         {
-            hop = network[startRouter - 1][hop - 1].getKey();
-            System.out.print(" " + hop);
-         }
-         System.out.println(": cost = " + network[startRouter - 1][dest - 1].getValue());
+         getPath(net, start, dest)
+               .forEach((hop) -> System.out.print(" " + hop));
+         System.out.println(": cost = " + net[start - 1][dest - 1].getValue());
       }
    }
 
@@ -116,7 +110,6 @@ public class LSRouting
    }
 
    /**
-    * TODO: like, this whole method, or something.
     * This should get the path from start to dest (in that order).
     *
     * Since net[start - 1][dest - 1] contains the last router before dest this
@@ -132,8 +125,25 @@ public class LSRouting
     * @param dest
     * @return
     */
-   private static int[] getPath(Pair<Integer,Integer>[][] network, int start, int dest) {
-      return null;
+   private static Stream<Integer> getPath(Pair<Integer,Integer>[][] network, int start, int dest) {
+      // If the start == the dest we don't need to search the network, router
+      // should have a zero cost path to itself. If not, get off my network.
+      if(start == dest)
+         return Arrays.stream(new Integer[] {start});
+
+      // Was going to use a stack, but Deque is recommended as it maintains the
+      // LIFO nature of a stack, which is needed here.
+      Deque<Integer> path = new ArrayDeque<>();
+      int hop = dest;
+      path.push(dest);
+
+      while(network[start - 1][hop - 1].getKey() != hop)
+      {
+         hop = network[start - 1][hop - 1].getKey();
+         path.push(hop);
+      }
+      path.push(start);
+      return path.stream();
    }
 
 }
